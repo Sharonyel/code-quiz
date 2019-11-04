@@ -19,15 +19,19 @@ startButton.addEventListener("click", function(event) {
 function startQuiz() {
 timerCount()
 
+// style="display: none";
+
+
+
 // Clear todoList element and update todoCountSpan
   // todoList.innerHTML = "";
   // todoCountSpan.textContent = todos.length;
 
   // Render a new li for each todo
   for (var i = 0; i < questions.length; i++) {
-   console.log(" title is " + questions[i].title);
-   console.log(" choices are " + questions[i].choices);
-    // listQuest.innerHTML = "";
+  //  console.log(" title is " + questions[i].title);
+  //  console.log(" choices are " + questions[i].choices);
+    listQuest.innerHTML = "";
     var getQuest = questions[i].title;
 
     var p = document.createElement("p");
@@ -41,20 +45,23 @@ timerCount()
       var li = document.createElement("li");
       li.textContent = listA;
       li.setAttribute("ansChoice", j);
-      ansLi.appendChild(li);
+
+      var button = document.createElement("button");
+      button.textContent = listA;
+
+      listQuest.appendChild(button);
       console.log("listA is " + listA);
 
-
-
-
+     
 
     }
 
-    // listChoices();
   }
 }
  
-// function listChoices() {
+// function addChecked() {
+//   var chButton = document.createElement("buttom");
+//   li.setAttribute
 
   
 // }
