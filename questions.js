@@ -45,4 +45,3 @@ var questions = [
     //     answer: "<h1>"
     // }
 ]
- console.log(questions);

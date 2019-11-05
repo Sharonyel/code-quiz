@@ -1,23 +1,30 @@
-* {
+*, *::before, *::after{
+    box-sizing: border-box;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    /* background: peru; */
+}
+
+body{
+   padding: 0;
+   margin: 0;
 
 }
-.jumbotron{
-    background: peachpuff;
-   
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: peru;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    font-size: 30px;
+}
+li{
+    padding: 20px;
 }
 .btn-primary{
     background-color: peru;
     border-color: peru;
-}
-nav {
-    background-color: peru;
-}
-.nav-link {
-    background-color: peachpuff;
-    border: peru;
 }
 a {
     color: #000;
