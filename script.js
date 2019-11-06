@@ -1,7 +1,8 @@
 
 var startButton = document.getElementById("start");
-var instContainer = document.getElementById("instruction");
-
+var instrc = document.getElementById("instruction");
+var jumbo = document.getElementById("jumbotron")
+var questionBox = document.getElementById("question-box")
 var ans1 = document.querySelector("choice1");
 var ans2 = document.querySelector("choice2");
 var ans3 = document.querySelector("choice3");
@@ -15,11 +16,18 @@ var subTime = -5;
 var i = 0;
 var timeEl = document.querySelector(".time");
 
-startButton.addEventListener("click", function (event) {
+startButton.addEventListener("click", function (event){
   event.preventDefault();
   timerCount();
-
   getQuestion();
+  questionBox.style.display = "inline-block";
+
+  if (instrc.style.display === "none") {
+    instrc.style.display = "block";
+  } else {
+    instrc.style.display = "none";
+  }
+  
 })
 
 function getQuestion() {
@@ -48,12 +56,10 @@ function getChoices() {
       li.setAttribute("ansChoice", j);
 
       var button = document.createElement("button");
-      // button.textContent = listA;
+      button.textContent = listA;
       
-      console.log("lista " + listA);
-
-      listQuest.appendChild(li);
-      li.appendChild(button);
+      listQuest.appendChild(button);
+      // li.appendChild(button);
 
     }
 

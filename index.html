@@ -14,18 +14,6 @@
 
 <body>
 
-    <!-- <nav class="navbar navbar-expand-lg justify-content-between navbar-light ml-auto"> -->
-
-    <!-- <a class="nav-link" href="#">High Scores</a>
-        <h1 class="time">Timer: 0</h1> -->
-    <!-- </nav> -->
-
-    <!-- <div class="jumbotron">
-        <h1 class="display-4">Code Quiz Challenge</h1>
-        <p class="lead">Let's test your knowledge on HTML, CSS, and Javascript. This is a Timed quiz.  Answer as many questions as you can before the time runs out.  Your score will be posted at the end.</p>
-        <hr class="my-4">
-        <p>READY - - SET - - GO  - Click the Start Quiz button to begin.</p> -->
-
     <div class="landing">
         <div class="row">
             <div class="col-sm-6">
@@ -37,22 +25,24 @@
             </div>
         </div>
     </div>
-    <div class="instruction">
-            <div class="row"></div>
 
-      <p class="lead">Let's test your knowledge on HTML, CSS, and Javascript. This is a Timed quiz.  Answer as many questions as you can before the time runs out.  Your score will be posted at the end.</p>
-
+    <div class="jumbotron" id="instruction">
+        <h1 class="display-4">Code Quiz Challenge</h1>
+        <p class="lead">Let's test your knowledge on HTML, CSS, and Javascript.
+            This is a Timed quiz.  Answer as many questions as you can before the time runs out.  Your score will be posted at the end.</p>
+        <hr class="my-4">
+        <p>READY - - SET - - GO  - Click the Start Quiz button to begin.</p>
         <a id="start" class="btn btn-primary btn-lg" role="button">Start Quiz</a>
         <div class="row"></div>
 
-    </div> 
-    <div class="container">
+    </div>
+    <div id="question-box">
         <p id="askQuestion"></p>
         <div id="ansChoice">
-            <p id="choice1"></p>
+            <!-- <p id="choice1"></p>
             <p id="choice2"></p>
             <p id="choice3"></p>
-            <p id="choice4"></p>
+            <p id="choice4"></p> -->
         <div>
     </div>
     <script src="./questions.js"></script>
