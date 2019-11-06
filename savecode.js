@@ -3,10 +3,7 @@ var startButton = document.getElementById("start");
 var instrc = document.getElementById("instruction");
 var jumbo = document.getElementById("jumbotron")
 var questionBox = document.getElementById("question-box")
-var ans1 = document.querySelector("choice1");
-var ans2 = document.querySelector("choice2");
-var ans3 = document.querySelector("choice3");
-var ans4 = document.querySelector("choice4");
+var messageBox = document.getElementById("message-box")
 var ansLi = document.querySelector("#ansChoice");
 var listQuest = document.getElementById("askQuestion");
 var listMsg = document.getElementById("listmsg");
@@ -77,13 +74,23 @@ function getChoices() {
         //  console.log("index is " + index);
         //  console.log(questions[i].choices[index]);
         //  console.log(questions[i].answer);
+        messageBox.style.display = "inline-flex";
 
        }
        if (questions[i].choices[index] === questions[i].answer) {
-        // console.log("correct")
-        msgfunction()
+        listMsg.innerHTML = "";
+        var message = document.createTextNode("CORRECT");
+        listMsg.appendChild(message);
+        console.log(message);
+        i++
+    
+        getQuestion();
         
        } else {
+        listMsg.innerHTML = "";
+        var messagew = document.createTextNode("WRONG");
+        listMsg.appendChild(messagew);
+
           console.log("wrong")
           i++
           getQuestion();
@@ -98,7 +105,7 @@ function getChoices() {
 
     var message = document.createTextNode("CORRECT");
 
-    listMsg.appendChild(message);
+    msgDiv.appendChild(message);
     console.log(message);
     i++
 

@@ -4,14 +4,6 @@ var instrc = document.getElementById("instruction");
 var jumbo = document.getElementById("jumbotron")
 var questionBox = document.getElementById("question-box")
 var messageBox = document.getElementById("message-box")
-var msgDiv = document.createElement("p");
-var message = document.createTextNode("CORRECT");
-var messagew = document.createTextNode("WRONG");
-
-var ans1 = document.querySelector("choice1");
-var ans2 = document.querySelector("choice2");
-var ans3 = document.querySelector("choice3");
-var ans4 = document.querySelector("choice4");
 var ansLi = document.querySelector("#ansChoice");
 var listQuest = document.getElementById("askQuestion");
 var listMsg = document.getElementById("listmsg");
@@ -41,9 +33,7 @@ startButton.addEventListener("click", function (event){
 function getQuestion() {
   // Get question info
 
-if (i < questions.length){
-  allDone();
-}
+
   // for (var i = 0; i < questions.length; i++) {
     listQuest.innerHTML = "";
     var getQuest = questions[i].title;
@@ -81,29 +71,45 @@ function getChoices() {
       
        if (element.matches("button") === true) {
          var index= element.parentElement.getAttribute("ansChoice");
-       
-        if (questions[i].choices[index] === questions[i].answer) {
-  
-          listMsg.innerHTML = " ";
-          listMsg.appendChild(message);
-          i++
-          getQuestion();
-        } else {
-          listMsg.innerHTML = " ";
-          listMsg.appendChild(messagew);
-          i++
-          getQuestion();
-        } 
-    
-return;
+        //  console.log("index is " + index);
+        //  console.log(questions[i].choices[index]);
+        //  console.log(questions[i].answer);
+        messageBox.style.display = "inline-flex";
 
        }
+       if (questions[i].choices[index] === questions[i].answer) {
+        listMsg.innerHTML = "";
+        var message = document.createTextNode("CORRECT");
+        listMsg.appendChild(message);
+        console.log(message);
+        i++
+    
+        getQuestion();
+        
+       } else {
+        listMsg.innerHTML = "";
+        var messagew = document.createTextNode("WRONG");
+        listMsg.appendChild(messagew);
+
+          console.log("wrong")
+          i++
+          getQuestion();
+          // setTheTimer += subTime;
+        } 
        event.stopPropagation();
   })
 
-  function allDone(){
+  function msgfunction(){
+    listMsg.innerHTML = "";
+    var msgDiv = document.createElement("p");
 
-    
+    var message = document.createTextNode("CORRECT");
+
+    msgDiv.appendChild(message);
+    console.log(message);
+    i++
+
+    getQuestion();
     }
 
 
