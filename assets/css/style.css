@@ -22,12 +22,25 @@ body{
     font-size: 20px;
     display: none;
    
+}
+#message-box {
+    width: 100px;
+    max-width: 90%;
+    background-color: peru;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    font-size: 20px;
+    display: none;
+
 
 }
 button{
     padding: 20px;
     border-radius: 60px;
     display: inline;
+    margin-right: 0px;
+   
 
 }
 li{

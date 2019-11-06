@@ -3,14 +3,22 @@ var startButton = document.getElementById("start");
 var instrc = document.getElementById("instruction");
 var jumbo = document.getElementById("jumbotron")
 var questionBox = document.getElementById("question-box")
+var messageBox = document.getElementById("message-box")
+var msgDiv = document.createElement("p");
+var message = document.createTextNode("CORRECT");
+var messagew = document.createTextNode("WRONG");
+
 var ans1 = document.querySelector("choice1");
 var ans2 = document.querySelector("choice2");
 var ans3 = document.querySelector("choice3");
 var ans4 = document.querySelector("choice4");
 var ansLi = document.querySelector("#ansChoice");
 var listQuest = document.getElementById("askQuestion");
-var correct = document.getElementById("correct");
+var listMsg = document.getElementById("listmsg");
 
+var correct = document.getElementById("correct");
+var correctMsg = "Correct";
+var wrongMsg = "Wrong";
 var setTheTimer = 0;
 var subTime = -5;
 var i = 0;
@@ -20,7 +28,7 @@ startButton.addEventListener("click", function (event){
   event.preventDefault();
   timerCount();
   getQuestion();
-  questionBox.style.display = "inline-block";
+  questionBox.style.display = "inline-flex";
 
   if (instrc.style.display === "none") {
     instrc.style.display = "block";
@@ -33,7 +41,9 @@ startButton.addEventListener("click", function (event){
 function getQuestion() {
   // Get question info
 
-
+if (i < questions.length){
+  allDone();
+}
   // for (var i = 0; i < questions.length; i++) {
     listQuest.innerHTML = "";
     var getQuest = questions[i].title;
@@ -51,15 +61,17 @@ function getChoices() {
 
       // console.log("the choice is " + questions[i].choices[j]);
       var listA = questions[i].choices[j];
-      var li = document.createElement("li");
-      li.textContent = listA;
-      li.setAttribute("ansChoice", j);
+      var p = document.createElement("p");
+      p.textContent = listA;
+      p.setAttribute("ansChoice", j);
 
       var button = document.createElement("button");
-      button.textContent = listA;
-      
-      listQuest.appendChild(button);
-      // li.appendChild(button);
+      // button.textContent = listA;
+      // listQuest.appendChild(button)
+      // console.log("lista " + listA);
+
+      listQuest.appendChild(p);
+      p.appendChild(button);
 
     }
 
@@ -69,24 +81,35 @@ function getChoices() {
       
        if (element.matches("button") === true) {
          var index= element.parentElement.getAttribute("ansChoice");
-         console.log("index is " + index);
-         console.log(questions[i].choices[index]);
-         console.log(questions[i].answer);
-
-       }
-       if (questions[i].choices[index] === questions[i].answer) {
-        console.log("correct")
-        i++
-        getQuestion();
-       } else {
-          console.log("wrong")
+       
+        if (questions[i].choices[index] === questions[i].answer) {
+  
+          listMsg.innerHTML = " ";
+          listMsg.appendChild(message);
           i++
           getQuestion();
-          // setTheTimer += subTime;
+        } else {
+          listMsg.innerHTML = " ";
+          listMsg.appendChild(messagew);
+          i++
+          getQuestion();
         } 
-       
+    
+return;
+
+       }
+       event.stopPropagation();
   })
 
+  function allDone(){
+
+    
+    }
+
+
+
+
+  
 function timerCount() {
   // Create the countdown timer.
   setTheTimer = 15;
