@@ -13,11 +13,14 @@ var correctMsg = "Correct";
 var wrongMsg = "Wrong";
 var setTheTimer = 0;
 var subTime = -5;
+var finalScore = 0;
 var i = 0;
 var timeEl = document.querySelector(".time");
 
 startButton.addEventListener("click", function (event){
   event.preventDefault();
+  setTheTimer = 15;
+
   timerCount();
   getQuestion();
   questionBox.style.display = "inline-flex";
@@ -33,11 +36,19 @@ startButton.addEventListener("click", function (event){
 function getQuestion() {
   // Get question info
 
-
+if (i === questions.length) {
+  console.log("done");
+  finalScore = setTheTimer;
+  // setTheTimer = 0;
+  // timerCount();
+  allDone();
+  return;
+}
   // for (var i = 0; i < questions.length; i++) {
     listQuest.innerHTML = "";
     var getQuest = questions[i].title;
- 
+    console.log("Length is " + questions.length);
+
     var p = document.createElement("p");
     p.textContent = getQuest;
     p.setAttribute("askQuestion", i);
@@ -71,9 +82,6 @@ function getChoices() {
       
        if (element.matches("button") === true) {
          var index= element.parentElement.getAttribute("ansChoice");
-        //  console.log("index is " + index);
-        //  console.log(questions[i].choices[index]);
-        //  console.log(questions[i].answer);
         messageBox.style.display = "inline-flex";
 
        }
@@ -91,7 +99,7 @@ function getChoices() {
         var messagew = document.createTextNode("WRONG");
         listMsg.appendChild(messagew);
 
-          console.log("wrong")
+          console.log(messagew);
           i++
           getQuestion();
           // setTheTimer += subTime;
@@ -99,26 +107,35 @@ function getChoices() {
        event.stopPropagation();
   })
 
-  function msgfunction(){
-    listMsg.innerHTML = "";
-    var msgDiv = document.createElement("p");
+function allDone(){
 
-    var message = document.createTextNode("CORRECT");
+  questionBox.style.display = "none";
+  messageBox.style.display = "none";
 
-    msgDiv.appendChild(message);
-    console.log(message);
-    i++
+  var targetDiv = document.getElementById("empty-div");
+  targetDiv.textContent = "All Done!";
+ 
+  var newDiv = document.createElement("div");
+       newDiv.textContent = ("Your Socre is " + finalScore);
+ 
+       targetDiv.appendChild(newDiv);
+       var nameDiv = document.createElement("div");
+          nameDiv.textContent = ("Enter Your Name ");
+          newDiv.appendChild(nameDiv);
+       var x = document.createElement("INPUT");
+       x.setAttribute("type", "text");
 
-    getQuestion();
-    }
+       newDiv.appendChild(x);
 
+
+}
 
 
 
   
 function timerCount() {
   // Create the countdown timer.
-  setTheTimer = 15;
+  // setTheTimer = 15;
 
   var timeInterval = setInterval(function () {
 
