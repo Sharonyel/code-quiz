@@ -13,8 +13,7 @@ body{
     background-color: bisque;
 }
 #question-box {
-    width: 800px;
-    max-width: 90%;
+    width: 100%;
     background-color: peru;
     border-radius: 5px;
     padding: 10px;
@@ -24,14 +23,17 @@ body{
    
 }
 #message-box {
-    width: 800px;
+    width: 100%;
     max-width: 90%;
-    background-color: peru;
-    border-radius: 5px;
+    /* background-color:peru; */
+    border-radius: 5px;    
     padding: 10px;
     box-shadow: 0 0 10px 2px;
-    font-size: 20px;
+    font-size: 30px;
     display: none;
+    margin-left: 200px;
+    margin-right: 100px;
+    text-align: center;
 
 
 }
@@ -40,7 +42,6 @@ button{
     border-radius: 60px;
     display: inline;
     margin-right: 0px;
-   
 
 }
 li{
@@ -55,6 +56,8 @@ li{
 a {
     color: #000;
     font-size: 40px;
-    
-    
+   
 }
+/* p > .listMsg {
+    text-align: center;
+} */

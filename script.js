@@ -67,12 +67,14 @@ function getChoices() {
       p.setAttribute("ansChoice", j);
 
       var button = document.createElement("button");
-      // button.textContent = listA;
-      // listQuest.appendChild(button)
+      button.textContent = listA;
+      button.setAttribute("ansChoice", j);
+
+      listQuest.appendChild(button)
       // console.log("lista " + listA);
 
-      listQuest.appendChild(p);
-      p.appendChild(button);
+      // listQuest.appendChild(p);
+      // p.appendChild(button);
 
     }
 
@@ -81,7 +83,7 @@ function getChoices() {
       var element = event.target;
       
        if (element.matches("button") === true) {
-         var index= element.parentElement.getAttribute("ansChoice");
+         var index= element.getAttribute("ansChoice");
         messageBox.style.display = "inline-flex";
 
        }
@@ -122,15 +124,18 @@ function allDone(){
        var nameDiv = document.createElement("div");
           nameDiv.textContent = ("Enter Your Name ");
           newDiv.appendChild(nameDiv);
-       var x = document.createElement("INPUT");
-       x.setAttribute("type", "text");
+       var nameEntered = document.createElement("INPUT");
+       nameEntered.setAttribute("type", "text");
 
        newDiv.appendChild(x);
-
-
 }
 
+// When highscore name is submitted & Highscore
 
+// submitHighScore.addEventListener("enter", function(event) {
+//   event.preventDefault();
+//    var highscoreName =  
+// })
 
   
 function timerCount() {
