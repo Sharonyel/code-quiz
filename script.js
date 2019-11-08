@@ -18,7 +18,6 @@ var correct = document.getElementById("correct");
 var correctMsg = "Correct";
 var wrongMsg = "Wrong";
 var setTheTimer = 0;
-var subTime = -5;
 var finalScore = 0;
 var i = 0;
 var timeEl = document.querySelector(".time");
@@ -40,6 +39,7 @@ startButton.addEventListener("click", function (event){
 })
 
 function getQuestion() {
+  messageBox.style.display = "none";
 
 if (i === questions.length) {
   console.log("done");
@@ -49,11 +49,6 @@ if (i === questions.length) {
   return;
 }
 
-
-
-
-
-  // for (var i = 0; i < questions.length; i++) {
     listQuest.innerHTML = "";
     var getQuest = questions[i].title;
     console.log("Length is " + questions.length);
@@ -94,12 +89,12 @@ function getChoices() {
         listMsg.innerHTML = "";        
 
 
-        var message = document.createTextNode("CORRECT");
+        var message = document.createTextNode("Correct");
         listMsg.appendChild(message);
         console.log(message);
         i++
 
-        message = "";
+        // message = "";
 
         console.log(message);
 
@@ -109,19 +104,19 @@ function getChoices() {
         
        } else {
         listMsg.innerHTML = "";
-        var messagew = document.createTextNode("WRONG");
+        var messagew = document.createTextNode("Wrong");
         listMsg.appendChild(messagew);
 
-          console.log(messagew);
+          setTheTimer -= 15;
+          if (setTheTimer <= 0){
+            setTheTimer = 0;
+            allDone();
+          }
+         
           i++
-
+          
           setTimeout(getQuestion, 1000);
-
-
-        
-
-          // getQuestion();
-          // setTheTimer += subTime;
+          // messagew = "";
         } 
        event.stopPropagation();
   })
@@ -170,7 +165,7 @@ nameEntered.addEventListener("keypress", function(event) {
     if (key === 13) {
       scores.push(highscoreName);
       highScoreInput.value = "";
-    console.log(" key 13")
+    console.log("key 13")
       storeHighscore();
 
     }
@@ -189,13 +184,12 @@ function timerCount() {
 
   var timeInterval = setInterval(function () {
 
-    setTheTimer--;
 
     timeEl.textContent = "Timer : " + setTheTimer;
 
     if (setTheTimer === 0) {
       clearInterval(timeInterval);
-      // alert("time up");
+     allDone();
     }
 
     if (i === questions.length) {
@@ -203,7 +197,14 @@ function timerCount() {
         clearInterval(timeInterval);
     console.log("timer stop")
     }
-    
+    if (setTheTimer <= 0) {
+      setTheTimer = 0;
+      console.log("settimer " + setTheTimer);
+     clearInterval(timeInterval);
+
+      allDone();
+    }
+    setTheTimer--;
 
   }, 1000)
 }
