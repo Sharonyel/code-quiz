@@ -7,6 +7,12 @@ var messageBox = document.getElementById("message-box")
 var ansLi = document.querySelector("#ansChoice");
 var listQuest = document.getElementById("askQuestion");
 var listMsg = document.getElementById("listmsg");
+var newDiv = document.createElement("div");
+var nameEntered = document.createElement("INPUT");
+
+var submitHighScore = document.querySelector("#highscore-sub");
+var highScoreInput = document.querySelector("#highscore-text");
+var scores = [];
 
 var correct = document.getElementById("correct");
 var correctMsg = "Correct";
@@ -19,7 +25,7 @@ var timeEl = document.querySelector(".time");
 
 startButton.addEventListener("click", function (event){
   event.preventDefault();
-  setTheTimer = 15;
+  setTheTimer = 45;
 
   timerCount();
   getQuestion();
@@ -34,16 +40,19 @@ startButton.addEventListener("click", function (event){
 })
 
 function getQuestion() {
-  // Get question info
 
 if (i === questions.length) {
   console.log("done");
   finalScore = setTheTimer;
-  // setTheTimer = 0;
-  // timerCount();
+
   allDone();
   return;
 }
+
+
+
+
+
   // for (var i = 0; i < questions.length; i++) {
     listQuest.innerHTML = "";
     var getQuest = questions[i].title;
@@ -60,7 +69,6 @@ if (i === questions.length) {
 function getChoices() {
     for (var j = 0; j < 4; j++) {
 
-      // console.log("the choice is " + questions[i].choices[j]);
       var listA = questions[i].choices[j];
       var p = document.createElement("p");
       p.textContent = listA;
@@ -71,11 +79,6 @@ function getChoices() {
       button.setAttribute("ansChoice", j);
 
       listQuest.appendChild(button)
-      // console.log("lista " + listA);
-
-      // listQuest.appendChild(p);
-      // p.appendChild(button);
-
     }
 
   }
@@ -88,13 +91,21 @@ function getChoices() {
 
        }
        if (questions[i].choices[index] === questions[i].answer) {
-        listMsg.innerHTML = "";
+        listMsg.innerHTML = "";        
+
+
         var message = document.createTextNode("CORRECT");
         listMsg.appendChild(message);
         console.log(message);
         i++
-    
-        getQuestion();
+
+        message = "";
+
+        console.log(message);
+
+        setTimeout(getQuestion, 1000);
+
+        // getQuestion();
         
        } else {
         listMsg.innerHTML = "";
@@ -103,7 +114,13 @@ function getChoices() {
 
           console.log(messagew);
           i++
-          getQuestion();
+
+          setTimeout(getQuestion, 1000);
+
+
+        
+
+          // getQuestion();
           // setTheTimer += subTime;
         } 
        event.stopPropagation();
@@ -114,29 +131,57 @@ function allDone(){
   questionBox.style.display = "none";
   messageBox.style.display = "none";
 
+  submitHighScore = innerHTML = "";
+
   var targetDiv = document.getElementById("empty-div");
-  targetDiv.textContent = "All Done!";
+  targetDiv.textContent = ("All Done!");
  
-  var newDiv = document.createElement("div");
        newDiv.textContent = ("Your Socre is " + finalScore);
  
        targetDiv.appendChild(newDiv);
        var nameDiv = document.createElement("div");
           nameDiv.textContent = ("Enter Your Name ");
           newDiv.appendChild(nameDiv);
-       var nameEntered = document.createElement("INPUT");
        nameEntered.setAttribute("type", "text");
 
-       newDiv.appendChild(x);
+       newDiv.appendChild(nameEntered);
+
+      //  var buttonHS = document.createElement("button");
+      //      buttonHS.textContent = "Submit";
+
+      //      nameEntered.appendChild(button);
+
+
+
 }
 
 // When highscore name is submitted & Highscore
 
-// submitHighScore.addEventListener("enter", function(event) {
-//   event.preventDefault();
-//    var highscoreName =  
-// })
+nameEntered.addEventListener("keypress", function(event) {
+  event.preventDefault();
 
+   var highscoreName =  nameEntered.value.trim();
+  //  return if input is blank
+
+  var key = event.which || event.keycode;
+  if (highscoreName === ""){
+    return;
+  } else {
+    if (key === 13) {
+      scores.push(highscoreName);
+      highScoreInput.value = "";
+    console.log(" key 13")
+      storeHighscore();
+
+    }
+  }
+  
+})
+
+function storeHighscore(){
+  // JSON Stringify and set ke in localStorage to array
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
   
 function timerCount() {
   // Create the countdown timer.
@@ -153,7 +198,13 @@ function timerCount() {
       // alert("time up");
     }
 
+    if (i === questions.length) {
+    
+        clearInterval(timeInterval);
+    console.log("timer stop")
+    }
+    
+
   }, 1000)
 }
-
 
