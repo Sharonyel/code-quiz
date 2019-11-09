@@ -10,13 +10,13 @@ var listMsg = document.getElementById("listmsg");
 var doneMsg = document.getElementById("done-msg");
 var scoreMsg = document.getElementById("score-msg");
 var nameMsg = document.getElementById("name-msg");
-// var enterName = document.querySelector("enter-name");
 var submitBtn = document.querySelector("#submit-btn");
+var highScoreForm = document.querySelector("#score-form");
+var highScoreList = document.querySelector("score-list");
+var enterName = document.querySelector("#enter-name");
+var allDone = document.querySelector("#all-done");
 
-// var submitHighScore = document.querySelector("#highscore-sub");
-// var highScoreInput = document.querySelector("#highscore-text");
-
-var highScores = [];
+var scores = [];
 
 var correct = document.getElementById("correct");
 var correctMsg = "Correct";
@@ -49,7 +49,7 @@ function getQuestion() {
     console.log("done");
     finalScore = setTheTimer;
 
-    allDone();
+    getDone();
     return;
   }
 
@@ -109,7 +109,7 @@ listQuest.addEventListener("click", function (event) {
     setTheTimer -= 15;
     if (setTheTimer <= 0) {
       setTheTimer = 0;
-      allDone();
+      getallDone();
     }
 
     i++
@@ -119,10 +119,12 @@ listQuest.addEventListener("click", function (event) {
   event.stopPropagation();
 })
 
-function allDone() {
+function getallDone() {
 
   questionBox.style.display = "none";
   messageBox.style.display = "none";
+  allDone.style.display = "inline";
+
 
   var enterName = innerHTML = "";
 
@@ -133,6 +135,7 @@ function allDone() {
 
   nameMsg.textContent = ("Enter Your Name please ");
 
+  
 
 }
 
@@ -140,29 +143,32 @@ function allDone() {
 
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  console.log("submit button")
 
-  var enterName = document.querySelector("#enter-name").value;
+  var nameText = enterName.value.trim();
 
-console.log("enter name here")
+console.log("enter nameText  " + nameText)
 
-  if (enterName === "") {
+  if (nameText === "") {
     console.log("enter blank")
     return;
   } 
-var highScoreString = (enterName + "   -   " + finalScore);
+var highScoreString = (nameText + "   -   " + finalScore);
 
-  highScores.push(highScoreString);
+console.log("enter  here hs str " + highScoreString)
 
+
+  scores.push(highScoreString);
   enterName.value = "";
 
   storeScore();
 
-  postHighscore()
+  getHighscore()
+  console.log("get score  ******   ")
+  postHighscores();
 
 })
 
-function postHighscore(){
+function getHighscore(){
 
 
     var storedScores = JSON.parse(localStorage.getItem("scores"))
@@ -170,17 +176,39 @@ function postHighscore(){
     if (storedScores !== null) {
       scores = storedScores;
     }
-    console.log(storedScores);
+    console.log("stored scores8888   ");
+    alert("high scores are " + scores);
+
+
 
 }
 function storeScore(){
-
+  
   // Stingify and set highscore ke in local storage to the array
-
-  localStorage.setItem("highScores", JSON.stringify(highScores));
+  console.log("enter name here bs   " + scores)
+  localStorage.setItem("scores", JSON.stringify(scores));
+  console.log("enter name here as   " + scores)
 
 }
 
+function postHighscores(){
+ console.log("post score")
+
+// 
+
+  for (var n=0; n<scores.length; n++){
+
+
+var viewHighscore = document.createTextNode("viewHighscore");
+    viewHighscore.textContent = scores;
+    viewHighscore.setAttribute("data-index". n)
+    listHighscore.appendChild(viewHighscore);
+
+
+    console.log("made in here post hs ");
+  }
+   
+}
 
 
 function timerCount() {
