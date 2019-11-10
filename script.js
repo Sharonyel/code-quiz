@@ -20,6 +20,7 @@ var highScoreBox = document.querySelector("#highscore-box");
 var highScoreHead = document.querySelector("#highscore-header");
 var clearScore = document.querySelector("#clear-score");
 var playAgain = document.querySelector("#play-again");
+var highScoreBtn = document.querySelector("#highscore-btn");
 
 
 
@@ -162,7 +163,7 @@ var highScoreString = (nameText + "   -   " + finalScore);
   storeScore();
 
   // getHighscore()
-  highScoreBox.style.display = "inline";
+  highScoreBox.style.display = "inline-flex";
 
   postHighscores();
 
@@ -196,25 +197,19 @@ function postHighscores(){
 
   highScoreHead.innerHTML = "";
 
-  var hshead = document.createTextNode("p");
-  hshead.textContent = "High Score List"
-  highScoreHead.appendChild(hshead);
-
-  var scoreList = document.createElement("p");
-
-
+  highScoreHead.textContent = "High Score List"
+  highScoreBox.appendChild(highScoreHead);
   for (var n=0; n < scores.length; n++){
-
     var score = scores[n];
-
     var newScore = document.createElement("p");
     // var scoreItem = scores[n];
     newScore.innerHTML = score;
-    scoreList.appendChild(newScore);
-    
+    highScoreList.appendChild(newScore);
 }
 
-  highScoreList.appendChild(scoreList)
+  highScoreHead.appendChild(highScoreList);
+  highScoreList.appendChild(highScoreBtn);
+
 }
 
 
