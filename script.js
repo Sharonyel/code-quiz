@@ -17,6 +17,7 @@ var enterName = document.querySelector("#enter-name");
 var allDone = document.querySelector("#all-done");
 
 var scores = [];
+getHighscore();
 
 
 var correct = document.getElementById("correct");
@@ -97,10 +98,7 @@ listQuest.addEventListener("click", function (event) {
     listMsg.appendChild(message);
     i++
 
-
     setTimeout(getQuestion, 1000);
-
-
 
   } else {
     listMsg.innerHTML = "";
@@ -150,8 +148,7 @@ console.log("enter nameText  " + nameText)
   } 
 var highScoreString = (nameText + "   -   " + finalScore);
 
-console.log("enter  here hs str " + highScoreString)
-
+// scores.push(highScoreString);
 
   scores.push(highScoreString);
   enterName.value = "";
@@ -165,13 +162,14 @@ console.log("enter  here hs str " + highScoreString)
 })
 
 function getHighscore(){
-    // var storedScores = JSON.parse(localStorage.getItem("scores"))
+    var storedScores = JSON.parse(localStorage.getItem("scores"))
 
-    // if (storedScores !== null) {
-    //   scores = storedScores;
-    // }
-    // console.log("stored scores8888   ");
-    // alert("high scores are " + scores);
+    if (storedScores !== null) {
+      scores = storedScores;
+    }
+    console.log("stored scores8888   ");
+    alert("high scores are " + scores);
+    postHighscores();
 }
 function storeScore(){
   
@@ -185,19 +183,24 @@ function storeScore(){
 
 function postHighscores(){
 
+  allDone.style.display = "none";
+
+
   highScoreList.innerHTML = "";
 
 var highScoreHeader = document.createElement("h1") 
+
   highScoreHeader.textContent = "High Score List";
+
 var scoreList = document.createElement("p");
 
 
-  for (var n=0; n<scores.length; n++){
+  for (var n=0; n < scores.length; n++){
 
     var score = scores[n];
 
     var newScore = document.createElement("p");
-    var scoreItem = scores[n];
+    // var scoreItem = scores[n];
     newScore.innerHTML = score;
     scoreList.appendChild(newScore);
     
