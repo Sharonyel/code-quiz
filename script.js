@@ -17,7 +17,7 @@ var enterName = document.querySelector("#enter-name");
 var allDone = document.querySelector("#all-done");
 
 var scores = [];
-getHighscore();
+// getHighscore();
 
 
 var correct = document.getElementById("correct");
@@ -130,7 +130,7 @@ function getDone() {
 
   scoreMsg.textContent = ("Your Score is " + finalScore);
 
-  nameMsg.textContent = ("Enter Your Name please ");
+  nameMsg.textContent = ("Enter Your Name for High Score ");
 
 }
 
@@ -167,9 +167,7 @@ function getHighscore(){
     if (storedScores !== null) {
       scores = storedScores;
     }
-    console.log("stored scores8888   ");
-    alert("high scores are " + scores);
-    postHighscores();
+      postHighscores();
 }
 function storeScore(){
   
