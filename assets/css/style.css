@@ -42,7 +42,7 @@ button{
     margin-right: 0px;
 
 }
-li{
+li, ul{
     padding: 20px;
     text-decoration: none;
 }

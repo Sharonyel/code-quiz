@@ -12,11 +12,12 @@ var scoreMsg = document.getElementById("score-msg");
 var nameMsg = document.getElementById("name-msg");
 var submitBtn = document.querySelector("#submit-btn");
 var highScoreForm = document.querySelector("#score-form");
-var highScoreList = document.querySelector("score-list");
+var highScoreList = document.querySelector("#highscore-list");
 var enterName = document.querySelector("#enter-name");
 var allDone = document.querySelector("#all-done");
 
 var scores = [];
+
 
 var correct = document.getElementById("correct");
 var correctMsg = "Correct";
@@ -109,7 +110,7 @@ listQuest.addEventListener("click", function (event) {
     setTheTimer -= 15;
     if (setTheTimer <= 0) {
       setTheTimer = 0;
-      getallDone();
+      getDone();
     }
 
     i++
@@ -119,23 +120,19 @@ listQuest.addEventListener("click", function (event) {
   event.stopPropagation();
 })
 
-function getallDone() {
+function getDone() {
 
   questionBox.style.display = "none";
   messageBox.style.display = "none";
   allDone.style.display = "inline";
 
-
   var enterName = innerHTML = "";
-
 
   doneMsg.textContent = ("All Done!");
 
   scoreMsg.textContent = ("Your Score is " + finalScore);
 
   nameMsg.textContent = ("Enter Your Name please ");
-
-  
 
 }
 
@@ -149,7 +146,6 @@ submitBtn.addEventListener("click", function (event) {
 console.log("enter nameText  " + nameText)
 
   if (nameText === "") {
-    console.log("enter blank")
     return;
   } 
 var highScoreString = (nameText + "   -   " + finalScore);
@@ -162,54 +158,53 @@ console.log("enter  here hs str " + highScoreString)
 
   storeScore();
 
-  getHighscore()
-  console.log("get score  ******   ")
+  // getHighscore()
+ 
   postHighscores();
 
 })
 
 function getHighscore(){
+    // var storedScores = JSON.parse(localStorage.getItem("scores"))
 
-
-    var storedScores = JSON.parse(localStorage.getItem("scores"))
-
-    if (storedScores !== null) {
-      scores = storedScores;
-    }
-    console.log("stored scores8888   ");
-    alert("high scores are " + scores);
-
-
-
+    // if (storedScores !== null) {
+    //   scores = storedScores;
+    // }
+    // console.log("stored scores8888   ");
+    // alert("high scores are " + scores);
 }
 function storeScore(){
   
   // Stingify and set highscore ke in local storage to the array
-  console.log("enter name here bs   " + scores)
+
   localStorage.setItem("scores", JSON.stringify(scores));
+
   console.log("enter name here as   " + scores)
 
 }
 
 function postHighscores(){
- console.log("post score")
 
-// 
+  highScoreList.innerHTML = "";
+
+var highScoreHeader = document.createElement("h1") 
+  highScoreHeader.textContent = "High Score List";
+var scoreList = document.createElement("p");
+
 
   for (var n=0; n<scores.length; n++){
 
+    var score = scores[n];
 
-var viewHighscore = document.createTextNode("viewHighscore");
-    viewHighscore.textContent = scores;
-    viewHighscore.setAttribute("data-index". n)
-    listHighscore.appendChild(viewHighscore);
-
-
-    console.log("made in here post hs ");
-  }
-   
+    var newScore = document.createElement("p");
+    var scoreItem = scores[n];
+    newScore.innerHTML = score;
+    scoreList.appendChild(newScore);
+    
 }
 
+  highScoreList.appendChild(scoreList)
+}
 
 function timerCount() {
 
@@ -220,7 +215,7 @@ function timerCount() {
 
     if (setTheTimer === 0) {
       clearInterval(timeInterval);
-      allDone();
+      getDone();
     }
 
     if (i === questions.length) {
@@ -233,7 +228,7 @@ function timerCount() {
       console.log("settimer " + setTheTimer);
       clearInterval(timeInterval);
 
-      allDone();
+      getDone();
     }
     setTheTimer--;
 
