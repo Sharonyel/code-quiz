@@ -49,6 +49,17 @@ body{
 .inputHighscore{
     font-size: 30px;
 }
+#highscore-box{
+    width: 50%;
+    border-radius: 5px;    
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    font-size: 30px;
+    /* display: none; */
+    justify-content: center;
+    background-color: bisque;
+
+}
 button{
     padding: 10px;
     border-radius: 300px;
@@ -73,11 +84,11 @@ a {
 p {
     text-align: center;
 }
-#all-done{
+/* #all-done{
     width: 400px;
     height: 400px;
     border: crimson;
-}
+} */
 /* p > .listMsg {
     text-align: center;
 } */

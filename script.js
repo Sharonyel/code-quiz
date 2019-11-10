@@ -15,9 +15,16 @@ var highScoreForm = document.querySelector("#score-form");
 var highScoreList = document.querySelector("#highscore-list");
 var enterName = document.querySelector("#enter-name");
 var allDone = document.querySelector("#all-done");
+// var displayHigh = document.querySelector("#display-high")
+var highScoreBox = document.querySelector("#highscore-box");
+var highScoreHead = document.querySelector("#highscore-header");
+var clearScore = document.querySelector("#clear-score");
+var playAgain = document.querySelector("#play-again");
+
+
 
 var scores = [];
-// getHighscore();
+getHighscore();
 
 
 var correct = document.getElementById("correct");
@@ -31,7 +38,6 @@ var timeEl = document.querySelector(".time");
 startButton.addEventListener("click", function (event) {
   event.preventDefault();
   setTheTimer = 45;
-console.log("hello")
   timerCount();
   getQuestion();
   questionBox.style.display = "inline-flex";
@@ -130,7 +136,7 @@ function getDone() {
 
   scoreMsg.textContent = ("Your Score is " + finalScore);
 
-  nameMsg.textContent = ("Enter Your Name for High Score ");
+  nameMsg.textContent = ("Enter Your Name  ");
 
 }
 
@@ -156,7 +162,8 @@ var highScoreString = (nameText + "   -   " + finalScore);
   storeScore();
 
   // getHighscore()
- 
+  highScoreBox.style.display = "inline";
+
   postHighscores();
 
 })
@@ -178,19 +185,22 @@ function storeScore(){
   console.log("enter name here as   " + scores)
 
 }
+// *******************************
+// *******************************
+// *******************************
 
 function postHighscores(){
 
   allDone.style.display = "none";
+  // highScoreBox.style.display = "inline";
 
+  highScoreHead.innerHTML = "";
 
-  highScoreList.innerHTML = "";
+  var hshead = document.createTextNode("p");
+  hshead.textContent = "High Score List"
+  highScoreHead.appendChild(hshead);
 
-var highScoreHeader = document.createElement("h1") 
-
-  highScoreHeader.textContent = "High Score List";
-
-var scoreList = document.createElement("p");
+  var scoreList = document.createElement("p");
 
 
   for (var n=0; n < scores.length; n++){
@@ -206,6 +216,12 @@ var scoreList = document.createElement("p");
 
   highScoreList.appendChild(scoreList)
 }
+
+
+function deleteItem() {
+  localStorage.removeItem("scores");
+}
+
 
 function timerCount() {
 

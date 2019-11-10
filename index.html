@@ -35,18 +35,17 @@
         <p>READY - - SET - - GO - Click the Start Quiz button to begin.</p>
         <a id="start" class="btn btn-primary btn-lg" role="button">Start Quiz</a>
         <div class="row"></div>
-
     </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div id="question-box">
-
                 <p id="askQuestion"></p>
                 <div id="ansChoice"></div>
             </div>
-
         </div>
     </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div id="message-box">
@@ -56,7 +55,6 @@
     </div>
 
     <div class="container" id="all-done" style="display: none">
-        
         <div id="done-msg"></div>
         <div id="score-msg"></div>
         <div class="inputHighscore">
@@ -66,41 +64,18 @@
         </div>
     </div>
 
-
-    <div class="viewHighscore">
-        <!-- <form id="todo-form" method="POST">
-                      <label for="todo-text">Add a Todo:</label>
-                      <input type="text" placeholder="What needs to be done?" name="todo-text" id="todo-text" />
-                    </form> -->
-        <p id="highscore-list"></p>
-    </div>
-
-
-
-    <!-- <ul id="highscore-page" style="display: none">
-        </ul> -->
-
-
-    <!--  Modal for Highsores -->
-
-    <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+    <div class="displayhigh" id="display-high">
+        <div id="highscore-box" style="display: none">
+            <p id="highscore-header"></p>
+        <hr>
+        <ul id="highscore-list"></ul>
+        <hr>
+        <div class="d-flex justify-content-center">
+            <button onclick="deleteItem()" type="button" id="clear-scores" value="Submit">Clear</button>
+            <button type="button" id="play-again" value="Play Agin">Play Again</button>
+            <!-- <button onclick="getQuestion()" type="button" id="play-again" value="Play Agin">Play Again</button> -->
         </div>
+     </div>
     </div>
 
 
