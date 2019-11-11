@@ -28,5 +28,9 @@ How To Use The Page
 * You will have the option to Play again, go back or clear the high scores.
 
 
+Licsene
+---
+
+
 
 
