@@ -33,7 +33,9 @@ var finalScore = 0;
 var i = 0;
 var timeEl = document.querySelector(".time");
 
-var storedScores = JSON.parse(localStorage.getItem("scores"))
+// var storedScores = JSON.parse(localStorage.getItem("scores"))
+var storedScores = "";
+
 
 
 
@@ -154,8 +156,6 @@ submitBtn.addEventListener("click", function (event) {
   } 
 var highScoreString = (nameText + "   -   " + finalScore);
 
-// scores.push(highScoreString);
-
   scores.push(highScoreString);
   enterName.value = "";
 
@@ -184,7 +184,7 @@ function storeScore(){
   console.log("enter name here as   " + scores)
 
 }
-// *******************************
+// ***************************
 function viewHighscore(){
   allDone.style.display = "none";
   instrc.style.display = "none";
@@ -217,7 +217,8 @@ function postHighscores(){
     var score = scores[n];
     var newScore = document.createElement("p");
     // var scoreItem = scores[n];
-    newScore.innerHTML = score;
+    newScore.textContent = score;
+    newScore.setAttribute("data-index", n)
     highScoreList.appendChild(newScore);
 
 

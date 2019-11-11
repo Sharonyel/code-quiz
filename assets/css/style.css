@@ -97,6 +97,17 @@ a {
 p {
     text-align: center;
 }
+.begin-quiz{
+    font-size: 30px;
+}
+.go{
+    font-size: 40px;
+}
+.hsbtn{
+    background-color: peru;
+    color:  white;
+}
+
 /* #all-done{
     width: 400px;
     height: 400px;
