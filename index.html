@@ -14,10 +14,10 @@
 
 <body>
 
-    <div class="landing">
+    <div class="landing" id="landing-page">
         <div class="row">
             <div class="col-sm-6">
-                <h1 id="viewHigh" class="btn btn-primary btn-lg">View Highscore</h1>
+                <h1 onclick="viewHighscore()" id="viewHigh" class="btn btn-primary btn-lg">View Highscore</h1>
 
             </div>
             <div class="col-sm-6">
@@ -69,13 +69,13 @@
             <div id="highscore-header"></div>
         
         <ul id="highscore-list"></ul>
-    </div>
-        <div class="d-flex justify-content-center" id="highscore-btn">
-            <button onclick="deleteItem()" type="button" id="clear-scores" value="Submit">Clear</button>
-            <button type="button" id="play-again" value="Play Agin">Play Again</button>
-            <!-- <button onclick="getQuestion()" type="button" id="play-again" value="Play Agin">Play Again</button> -->
-        </div>
     
+        <div class="d-flex justify-content-center" id="highscore-btn">
+            <button onclick="clearList()" type="button" id="clear-scores" value="Submit">Clear</button>
+            <button onclick="startOver()" type="button" id="play-again" value="Play Agin">Play Again</button>
+            <button onclick="goBack()" type="button" id="go-back" value="Go Back">Go Back</button>
+        </div>
+    </div>
     </div>
 
 
