@@ -250,16 +250,18 @@ function startOver() {
 }
 
 //  *** Go back to the landing page  ***
-function goBack() {
+// function goBack() {
 
-  landingPage.style.display = "";
-  instrc.style.display = "block";
-  highScoreBox.style.display = "none";
-  allDone.style.display = "none";
-  setTheTimer = 0;
-  i = 0;
+//   landingPage.style.display = "";
+//   instrc.style.display = "block";
+//   highScoreBox.style.display = "none";
+//   allDone.style.display = "none";
+//   setTheTimer = 0;
+//   i = 0;
+  // $("#highscore-list").empty();
 
-}
+
+// }
 //  *** The timer  ***
 function timerCount() {
 
