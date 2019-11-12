@@ -11,19 +11,19 @@ var questions = [
     },
     {
         title: "How can you make a numbered list",
-        choices: ["<ol>", "<list>", "<iul>", "<dl"],
+        choices: ["<ol>", "<list>", "<iul>", "<dl>"],
         answer: "<ol>"
     },
-    {
-        title: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
-        choices: ["imgalt", "title", "alt", "src"],
-        answer: "alt"
-    },
-    {
-        title: "Which HTML element is used to specify a footer for a document or section?",
-        choices: ["<footer>", "<section>", "<header>", "<bottom>"],
-        answer: "<footer>"
-    },
+    // {
+    //     title: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    //     choices: ["imgalt", "title", "alt", "src"],
+    //     answer: "alt"
+    // },
+    // {
+    //     title: "Which HTML element is used to specify a footer for a document or section?",
+    //     choices: ["<footer>", "<section>", "<header>", "<bottom>"],
+    //     answer: "<footer>"
+    // },
     // {
     //     title: "What does CSS stand for?",
     //     choices: ["Computer Style Sheets", "Cascading Style Sheets", "Cascading Sheet Styles", "Colorful Style Sheets"],
@@ -32,7 +32,7 @@ var questions = [
     // {
     //     title: "Where in an HTML document is the correct place to refer to an external style sheet?",
     //     choices: ["The first line of HTML", "At the end of the document", "In the <head> section", "In the <body> section"],
-    //     answer: ""
+    //     answer: "In the <head> section"
     // },
     // {
     //     title: "Which is the correct CSS syntax?",

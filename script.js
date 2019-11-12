@@ -1,52 +1,37 @@
-
+//  ***  Variables  ***
 var startButton = document.getElementById("start");
 var instrc = document.getElementById("instruction");
 var landingPage = document.getElementById("landing-page");
-var jumbo = document.getElementById("jumbotron")
 var questionBox = document.getElementById("question-box")
 var messageBox = document.getElementById("message-box")
-var ansLi = document.querySelector("#ansChoice");
 var listQuest = document.getElementById("askQuestion");
 var listMsg = document.getElementById("listmsg");
 var doneMsg = document.getElementById("done-msg");
 var scoreMsg = document.getElementById("score-msg");
 var nameMsg = document.getElementById("name-msg");
 var submitBtn = document.querySelector("#submit-btn");
-var highScoreForm = document.querySelector("#score-form");
 var highScoreList = document.querySelector("#highscore-list");
 var enterName = document.querySelector("#enter-name");
 var allDone = document.querySelector("#all-done");
-// var displayHigh = document.querySelector("#display-high")
 var highScoreBox = document.querySelector("#highscore-box");
 var highScoreHead = document.querySelector("#highscore-header");
-var clearScore = document.querySelector("#clear-score");
-var playAgain = document.querySelector("#play-again");
 var highScoreBtn = document.querySelector("#highscore-btn");
+var timeEl = document.querySelector(".time");
+
 var scores = [];
-// var scores = ""
-// getHighscore();
-var correct = document.getElementById("correct");
-var correctMsg = "Correct";
-var wrongMsg = "Wrong";
 var setTheTimer = 0;
 var finalScore = 0;
 var i = 0;
-var timeEl = document.querySelector(".time");
-
-// var storedScores = JSON.parse(localStorage.getItem("scores"))
 var storedScores = "";
 
-
-
-
+//  ***  Start Quiz Button  ***
 startButton.addEventListener("click", function (event) {
   event.preventDefault();
-  setTheTimer = 75;
+  setTheTimer = (questions.length * 15);
   timerCount();
   getQuestion();
   questionBox.style.display = "inline-flex";
   allDone.style.display = "none";
-  // landingPage.style.dispay = "block";
 
   if (instrc.style.display === "none") {
     instrc.style.display = "block";
@@ -55,29 +40,27 @@ startButton.addEventListener("click", function (event) {
   }
 
 })
-
+// ***  Load the questions  ***
 function getQuestion() {
   messageBox.style.display = "none";
 
   if (i === questions.length) {
-
     getDone();
     return;
   }
 
   listQuest.innerHTML = "";
   var getQuest = questions[i].title;
-
   var p = document.createElement("p");
   p.textContent = getQuest;
   p.setAttribute("askQuestion", i);
   listQuest.appendChild(p);
   getChoices();
 }
-
+// ***  Load the answer choices  ***
 function getChoices() {
-  for (var j = 0; j < 4; j++) {
 
+  for (var j = 0; j < 4; j++) {
     var listA = questions[i].choices[j];
     var p = document.createElement("p");
     p.textContent = listA;
@@ -86,11 +69,11 @@ function getChoices() {
     var button = document.createElement("button");
     button.textContent = listA;
     button.setAttribute("ansChoice", j);
-
     listQuest.appendChild(button)
   }
 
 }
+// ***   Click the answer choice  ***
 listQuest.addEventListener("click", function (event) {
   var element = event.target;
 
@@ -101,7 +84,6 @@ listQuest.addEventListener("click", function (event) {
   }
   if (questions[i].choices[index] === questions[i].answer) {
     listMsg.innerHTML = "";
-
 
     var message = document.createTextNode("Correct");
     listMsg.appendChild(message);
@@ -114,7 +96,8 @@ listQuest.addEventListener("click", function (event) {
     var messagew = document.createTextNode("Wrong");
     listMsg.appendChild(messagew);
 
-    setTheTimer -= 15;
+    setTheTimer -= 10;
+
     if (setTheTimer <= 0) {
       setTheTimer = 0;
       getDone();
@@ -127,7 +110,10 @@ listQuest.addEventListener("click", function (event) {
   event.stopPropagation();
 })
 
+// Last question answered or time is up  ***
+
 function getDone() {
+  //  Final score is the time left on the timer  ***
   finalScore = setTheTimer;
 
   questionBox.style.display = "none";
@@ -137,14 +123,11 @@ function getDone() {
   var enterName = innerHTML = "";
 
   doneMsg.textContent = ("All Done!");
-
   scoreMsg.textContent = ("Your Score is " + finalScore);
-
   nameMsg.textContent = ("Enter Your Name  ");
-
 }
 
-// When highscore name is submitted & Highscore
+// When highscore name is submitted
 
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -153,120 +136,112 @@ submitBtn.addEventListener("click", function (event) {
 
   if (nameText === "") {
     return;
-  } 
-var highScoreString = (nameText + "   -   " + finalScore);
+  }
+  var highScoreString = (nameText + "   -   " + finalScore);
 
   scores.push(highScoreString);
   enterName.value = "";
 
   storeScore();
 
-  // getHighscore()
   highScoreBox.style.display = "inline-flex";
 
   postHighscores();
 
 })
+// ***  Get the High scores  ***
+function getHighscore() {
 
-function getHighscore(){
-
-    if (storedScores !== null) {
-      scores = storedScores;
-    }
-      postHighscores();
+  if (storedScores !== null) {
+    scores = storedScores;
+  }
+  // postHighscores();
 }
-function storeScore(){
-  
+
+function storeScore() {
+
   // Stingify and set highscore in local storage to the array
 
   localStorage.setItem("scores", JSON.stringify(scores));
 
-  console.log("enter name here as   " + scores)
+    if (storedScores) {
+      scores = storedScores.concat(scores);
 
+    };
+    localStorage.setItem("scores", JSON.stringify(scores));
 }
-// ***************************
-function viewHighscore(){
+// *** View the High Score List  ***
+function viewHighscore() {
   allDone.style.display = "none";
   instrc.style.display = "none";
   landingPage.style.display = "none";
   questionBox.style.display = "none";
   messageBox.style.display = "none";
 
-
   highScoreBox.style.display = "block";
-
+     storedScores = JSON.parse(localStorage.getItem("scores"));
 
   return;
 }
+// *** Post the High Score List  ***()
 
-
-
-
-
-// *******************************
-
-function postHighscores(){
+function postHighscores() {
   allDone.style.display = "none";
-  // highScoreBox.style.display = "inline";
 
-  highScoreHead.innerHTML = "";
+  // highScoreHead.innerHTML = "";
 
   highScoreHead.textContent = "High Score List"
   highScoreBox.appendChild(highScoreHead);
-  for (var n = 0 ; n < scores.length; n++){
+
+  $(highScoreList).empty();
+
+  for (var n = 0; n < scores.length; n++) {
     var score = scores[n];
     var newScore = document.createElement("p");
     // var scoreItem = scores[n];
     newScore.textContent = score;
     newScore.setAttribute("data-index", n)
     highScoreList.appendChild(newScore);
-
-
+    console.log("n is " + n)
+    console.log("length is " + scores.length)
+  }
   highScoreHead.appendChild(highScoreList);
   highScoreList.appendChild(highScoreBtn);
-  }
-
+   
 }
 
-
+// *** Clear the High Score List  ***
 function clearList() {
+console.log(scores)
 
-
-  console.log(scores);
   localStorage.removeItem("scores");
-  console.log("after " + scores);
-
-
-  highScoreHead.innerHTML = "";
+console.log("after " + scores)
+  // highScoreHead.innerHTML = "";
 
   highScoreHead.textContent = "High Score List"
   highScoreBox.appendChild(highScoreHead);
   highScoreHead.appendChild(highScoreBtn);
 
-  console.log("stored " + storedScores);
- storedScores = JSON.parse(localStorage.getItem("scores"));
+  $("#highscore-list").empty();
 
- console.log("stored after json " + storedScores);
- scores = "";
- scores = [];
-
-
+  // storedScores = JSON.parse(localStorage.getItem("scores"));
+  storedScores = [];
+  // scores = "";
+  scores = [];
 
 }
+// ***  Start over - Or play again  ***
+function startOver() {
 
-function startOver(){
-
-  setTheTimer = 75;
-  i = 0; 
-  scores=[];
+  setTheTimer = (questions.length * 15);
+  i = 0;
+  scores = [];
+  $("#highscore-list").empty();
   storedScores = JSON.parse(localStorage.getItem("scores"))
 
-
-  // storedScores = "";
   timerCount();
-  
+
   questionBox.style.display = "inline-flex";
-  // instrc.style.display = "block";
   landingPage.style.display = "inline";
 
   allDone.style.display = "none";
@@ -274,24 +249,21 @@ function startOver(){
   getQuestion();
 }
 
+//  *** Go back to the landing page  ***
+function goBack() {
 
-function goBack(){
-  
   landingPage.style.display = "";
   instrc.style.display = "block";
   highScoreBox.style.display = "none";
   allDone.style.display = "none";
   setTheTimer = 0;
   i = 0;
- 
+
 }
-
-
-
+//  *** The timer  ***
 function timerCount() {
 
   var timeInterval = setInterval(function () {
-
 
     timeEl.textContent = "Timer : " + setTheTimer;
 
@@ -303,11 +275,9 @@ function timerCount() {
     if (i === questions.length) {
 
       clearInterval(timeInterval);
-      console.log("timer stop")
     }
     if (setTheTimer <= 0) {
       setTheTimer = 0;
-      console.log("settimer " + setTheTimer);
       clearInterval(timeInterval);
 
       getDone();
