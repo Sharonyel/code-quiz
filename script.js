@@ -168,8 +168,9 @@ function viewHighscore() {
   landingPage.style.display = "none";
   questionBox.style.display = "none";
   messageBox.style.display = "none";
-  // clearInterval(timeInterval);
 
+
+  
      scores = JSON.parse(localStorage.getItem("scores"));
   
 
@@ -184,8 +185,6 @@ function viewHighscore() {
 function postHighscores() {
   allDone.style.display = "none";
   highScoreBox.style.display = "block";
-
-  // highScoreHead.innerHTML = "";
 
   highScoreHead.textContent = "High Score List"
   highScoreBox.appendChild(highScoreHead);
@@ -206,11 +205,8 @@ function postHighscores() {
 
 // *** Clear the High Score List  ***
 function clearList() {
-console.log(scores)
 
   localStorage.removeItem("scores");
-console.log("after " + scores)
-  // highScoreHead.innerHTML = "";
 
   highScoreHead.textContent = "High Score List"
   highScoreBox.appendChild(highScoreHead);
@@ -218,9 +214,7 @@ console.log("after " + scores)
 
   $("#highscore-list").empty();
 
-  // storedScores = JSON.parse(localStorage.getItem("scores"));
   storedScores = [];
-  // scores = "";
   scores = [];
 
 }
@@ -273,10 +267,8 @@ function timerCount() {
       clearInterval(timeInterval);
       finalScore = setTheTimer;
     
-
     }
 
- 
 
     if (setTheTimer <= 0) {
       setTheTimer = 0;
