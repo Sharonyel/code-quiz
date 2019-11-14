@@ -114,7 +114,6 @@ listQuest.addEventListener("click", function (event) {
 
 function getDone() {
   //  Final score is the time left on the timer  ***
-  finalScore = setTheTimer;
 
   questionBox.style.display = "none";
   messageBox.style.display = "none";
@@ -138,10 +137,17 @@ submitBtn.addEventListener("click", function (event) {
     return;
   }
   var highScoreString = (nameText + "   -   " + finalScore);
-
+finalScore="";
   scores.push(highScoreString);
   enterName.value = "";
 
+  storedScores = JSON.parse(localStorage.getItem("scores"));
+  if (storedScores) {
+    scores = storedScores.concat(scores);
+
+  };
+
+  
   storeScore();
 
   highScoreBox.style.display = "inline-flex";
@@ -149,26 +155,11 @@ submitBtn.addEventListener("click", function (event) {
   postHighscores();
 
 })
-// ***  Get the High scores  ***
-function getHighscore() {
-
-  if (storedScores !== null) {
-    scores = storedScores;
-  }
-  // postHighscores();
-}
 
 function storeScore() {
 
-  // Stingify and set highscore in local storage to the array
-
   localStorage.setItem("scores", JSON.stringify(scores));
 
-    if (storedScores) {
-      scores = storedScores.concat(scores);
-
-    };
-    localStorage.setItem("scores", JSON.stringify(scores));
 }
 // *** View the High Score List  ***
 function viewHighscore() {
@@ -177,9 +168,14 @@ function viewHighscore() {
   landingPage.style.display = "none";
   questionBox.style.display = "none";
   messageBox.style.display = "none";
+  // clearInterval(timeInterval);
 
-  highScoreBox.style.display = "block";
-     storedScores = JSON.parse(localStorage.getItem("scores"));
+     scores = JSON.parse(localStorage.getItem("scores"));
+  
+
+     console.log("scores " + scores)
+   
+     postHighscores();
 
   return;
 }
@@ -187,6 +183,7 @@ function viewHighscore() {
 
 function postHighscores() {
   allDone.style.display = "none";
+  highScoreBox.style.display = "block";
 
   // highScoreHead.innerHTML = "";
 
@@ -198,12 +195,9 @@ function postHighscores() {
   for (var n = 0; n < scores.length; n++) {
     var score = scores[n];
     var newScore = document.createElement("p");
-    // var scoreItem = scores[n];
     newScore.textContent = score;
     newScore.setAttribute("data-index", n)
     highScoreList.appendChild(newScore);
-    console.log("n is " + n)
-    console.log("length is " + scores.length)
   }
   highScoreHead.appendChild(highScoreList);
   highScoreList.appendChild(highScoreBtn);
@@ -277,7 +271,13 @@ function timerCount() {
     if (i === questions.length) {
 
       clearInterval(timeInterval);
+      finalScore = setTheTimer;
+    
+
     }
+
+ 
+
     if (setTheTimer <= 0) {
       setTheTimer = 0;
       clearInterval(timeInterval);
