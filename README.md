@@ -32,6 +32,8 @@ How To Use The Page
 * You will be given the opportunity to ener you name to the High score list
 * You will have the option to Play again, go back or clear the high scores.
 
+ Project source can be downloaded from (https://sharonyel.github.io/code-quiz/) 
+ ---
 
 License
 ---
