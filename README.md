@@ -7,19 +7,19 @@ This is a timed quiz to test your knowledge of HTML, CSS & Javascript.  The time
 
 Scores in the high score table are loaded in the localStorage.
 
-Images of the the site
+Images of the site
 ---
 
-<img src="assets/images/ss5.png" width=300>  
-<img src="assets/images/ss3.png" width=300>
-<img src="assets/images/ss4.png" width=300>  
+<img src="assets/images/ss5.png" width=700>  
+<img src="assets/images/ss3.png" width=700>
+<img src="assets/images/ss4.png" width=700>  
 
 
 
 Sample Code
 ---
 
-<img src="assets/images/ss1.png" width=300>
+<img src="assets/images/ss1.png" width=700>
 
 How To Use The Page
 ---
